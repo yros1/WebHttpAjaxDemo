@@ -1,15 +1,44 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import './FullPost.css';
 
 class FullPost extends Component {
-    render () {
+    state = {
+        loadedPost: null
+    }
+
+    componentDidUpdate () {
+        if ( this.props.id ) {
+            // this condition makes sure we are adding data for ne post only
+            if ( !this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id) ) {                
+                axios.get( 'https://jsonplaceholder.typicode.com/posts/' + this.props.id )
+                    .then( response => {
+                        // If we dont do above if, then this resuts with infinate look due to setState Rerender that component.
+                        // console.log(response);
+                        this.setState( { loadedPost: response.data } );
+                    } );
+            }
+        }
+    }
+
+    render () {        
         let post = <p style={{textAlign: 'center'}}>Please select a Post!</p>;
+
+        // if id null, we still waiting on deta coming back from service call request
+        // therefore set post to 'Loading...!' string temporarly.
         if (this.props.id) {
+            post = <p style={{textAlign: 'center'}}>Loading...!</p>;
+        }
+
+        // Check if loadedPost property has been data give comming from the web service call
+        // https://jsonplaceholder.typicode.com/posts/1
+        // response
+        if (this.state.loadedPost) {
             post = (
                 <div className="FullPost">
-                    <h1>Title</h1>
-                    <p>Content</p>
+                    <h1>{this.state.loadedPost.title}</h1>
+                    <p>{this.state.loadedPost.content}</p>
                     <div className="Edit">
                         <button className="Delete">Delete</button>
                     </div>
