@@ -9,12 +9,13 @@ import './Blog.css';
 class Blog extends Component {
     state = {
         posts: [],
-        selectedPostId: null    
+        selectedPostId: null,
+        error: false 
     }
 
     componentDidMount () {
         // best place for async service call
-        axios.get("http://jsonplaceholder.typicode.com/posts")
+        axios.get("http://jsonplaceholder.typicode.com/postssss")
             // once we get promise object then we can access to response object
             .then(response => {
                 // get first four posts
@@ -28,6 +29,10 @@ class Blog extends Component {
                 });
                 // set new shorthen list of post to state.posts
                 this.setState({posts : updatedPosts});
+            })
+            .catch(error => {
+                //console.log(error);
+                this.setState({error: true});
             });
     }
 
@@ -36,13 +41,16 @@ class Blog extends Component {
     }
 
     render () {
-        const posts = this.state.posts.map(post => {
-            return <Post 
-                title={post.title} 
-                key={post.id} 
-                author={post.author} 
-                clicked={() => this.postSelectedHandler(post.id)}/>
-        });
+        let posts = <p style={{textAlign: 'center'}}>Something went wrong!</p>
+        if (!this.state.error) {
+            posts = this.state.posts.map(post => {
+                return <Post 
+                    title={post.title} 
+                    key={post.id} 
+                    author={post.author} 
+                    clicked={() => this.postSelectedHandler(post.id)}/>
+            });            
+        }
 
         return (
             <div>
