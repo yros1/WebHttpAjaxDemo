@@ -6,7 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 import axios from 'axios';
 
 // reister new interceptor
-axios.interceptors.request.use(request => {
+var myRequestInterceptors = axios.interceptors.request.use(request => {
     console.log(request);
     // Edit request config before return it.
     // Common use case for it is add some common headers, 
@@ -17,7 +17,10 @@ axios.interceptors.request.use(request => {
     return Promise.reject(error);
 });
 
-axios.interceptors.response.use(response => {
+// Removing request interceptors
+axios.interceptors.request.eject(myRequestInterceptors);
+
+var myResponseInterceptors = axios.interceptors.response.use(response => {
     console.log(response);
     // Edit response config before return it.
     return response;
@@ -25,6 +28,9 @@ axios.interceptors.response.use(response => {
     console.log(error);
     return Promise.reject(error);
 });
+
+// Removing response interceptors
+axios.interceptors.response.eject(myResponseInterceptors);
 
 ReactDOM.render( <App />, document.getElementById( 'root' ) );
 registerServiceWorker();
