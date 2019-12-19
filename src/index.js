@@ -5,8 +5,15 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import axios from 'axios';
 
+// setup global defaults like baseURL
+axios.defaults.baseURL = 'http://jsonplaceholder.typicode.com';
+// Common headers for every service call example
+axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
+// Specific headers for specific service calls for example for posts
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 // reister new interceptor
-var myRequestInterceptors = axios.interceptors.request.use(request => {
+axios.interceptors.request.use(request => {
     console.log(request);
     // Edit request config before return it.
     // Common use case for it is add some common headers, 
@@ -17,10 +24,7 @@ var myRequestInterceptors = axios.interceptors.request.use(request => {
     return Promise.reject(error);
 });
 
-// Removing request interceptors
-axios.interceptors.request.eject(myRequestInterceptors);
-
-var myResponseInterceptors = axios.interceptors.response.use(response => {
+axios.interceptors.response.use(response => {
     console.log(response);
     // Edit response config before return it.
     return response;
@@ -28,9 +32,6 @@ var myResponseInterceptors = axios.interceptors.response.use(response => {
     console.log(error);
     return Promise.reject(error);
 });
-
-// Removing response interceptors
-axios.interceptors.response.eject(myResponseInterceptors);
 
 ReactDOM.render( <App />, document.getElementById( 'root' ) );
 registerServiceWorker();

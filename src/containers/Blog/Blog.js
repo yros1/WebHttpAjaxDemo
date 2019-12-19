@@ -15,7 +15,7 @@ class Blog extends Component {
 
     componentDidMount () {
         // best place for async service call
-        axios.get("http://jsonplaceholder.typicode.com/posts")
+        axios.get('/posts')
             // once we get promise object then we can access to response object
             .then(response => {
                 // get first four posts
