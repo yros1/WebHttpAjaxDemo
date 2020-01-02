@@ -22,13 +22,15 @@ class Blog extends Component {
                     </nav>
                 </header>
                 {/* localhost:3000/ display <Posts /> */}
-                <Route path="/" exact render={() => <Posts />} />
+                {/* <Route path="/" exact render={() => <Posts />} /> 
+                use render propert to display short messages only*/}
+                <Route path="/" exact component={Posts} />
                 
                 {/* localhost:3000/ display <FullPost /> */}
-                <Route path="/new-post" render={() => <FullPost />} />
-                
+                <Route path="/new-post" component={FullPost} />
+
                 {/* localhost:3000/ display <NewPost /> */}
-                <Route path="/full-post" render={() => <NewPost />} />
+                <Route path="/full-post" component={NewPost} />
             </div>
         );
     }
