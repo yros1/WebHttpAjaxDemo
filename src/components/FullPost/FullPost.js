@@ -12,7 +12,7 @@ class FullPost extends Component {
         if ( this.props.id ) {
             // this condition makes sure we are adding data for ne post only
             if ( !this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id) ) {                
-                axios.get( 'https://jsonplaceholder.typicode.com/posts/' + this.props.id )
+                axios.get( '/posts/' + this.props.id )
                     .then( response => {
                         // If we dont do above if, then this resuts with infinate look due to setState Rerender that component.
                         // console.log(response);
@@ -23,7 +23,7 @@ class FullPost extends Component {
     }
 
     deletePostHandler = () => {
-          axios.delete('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
+          axios.delete('/posts/' + this.props.id)
             .then(response => {
                 console.log(response);
             });
