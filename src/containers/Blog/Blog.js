@@ -4,8 +4,9 @@ import { Route } from 'react-router-dom';
 
 import './Blog.css';
 import Posts from './Posts/Posts';
-import FullPost from './FullPost/FullPost';
 import NewPost from './NewPost/NewPost';
+import FullPost from './FullPost/FullPost';
+
 
 class Blog extends Component {
     render () {
@@ -16,8 +17,7 @@ class Blog extends Component {
                         <ul>
                             <li><a href="/">Home</a></li>
                             <li><a href="/new-post">New Post</a></li>
-                            <li><a href="/full-post">Full Post</a></li>
-                            
+                            <li><a href="/full-post">Full Post</a></li>                            
                         </ul>
                     </nav>
                 </header>
