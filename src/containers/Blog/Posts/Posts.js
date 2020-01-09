@@ -10,6 +10,8 @@ class Posts extends Component {
     }
 
     componentDidMount () {
+        // out the props we have
+        console.log(this.props);
         // best place for async service call
         axios.get('/posts')
             // once we get promise object then we can access to response object
