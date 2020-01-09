@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 
 import './Blog.css';
 import Posts from './Posts/Posts';
@@ -15,9 +15,13 @@ class Blog extends Component {
                 <header>
                     <nav>
                         <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/new-post">New Post</a></li>
-                            <li><a href="/full-post">Full Post</a></li>                            
+                            <li><Link to='/'>Home</Link></li>
+                            <li><Link to={{
+                                pathname: '/new-post',
+                                hash: '#submit',
+                                search: '?quick-submit=true'
+                            }}>New Post</Link></li>
+                            <li><Link to='/full-post'>Full Post</Link></li>
                         </ul>
                     </nav>
                 </header>
@@ -27,10 +31,10 @@ class Blog extends Component {
                 <Route path="/" exact component={Posts} />
                 
                 {/* localhost:3000/ display <FullPost /> */}
-                <Route path="/new-post" component={FullPost} />
+                <Route path="/new-post" component={NewPost} />
 
                 {/* localhost:3000/ display <NewPost /> */}
-                <Route path="/full-post" component={NewPost} />
+                <Route path="/full-post" component={FullPost} />
             </div>
         );
     }
