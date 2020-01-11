@@ -16,10 +16,8 @@
     color: black;
 }
 
-.Blog a:hover {
-    color: #fa923f;
-}
-
-.Blog a:active {
-    color: red;
+.Blog a:hover,
+.Blog a:active,
+.Blog a.active{
+    color: #fa923f
 }
