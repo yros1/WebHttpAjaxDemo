@@ -42,6 +42,9 @@ class Blog extends Component {
 
                 {/* localhost:3000/ display <NewPost /> */}
                 <Route path="/full-post" component={FullPost} />
+
+                {/* Dynamically render full post based on specific id */}
+                <Route path="/:id" exact component={FullPost} />
             </div>
         );
     }
