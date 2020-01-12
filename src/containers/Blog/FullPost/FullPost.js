@@ -8,11 +8,12 @@ class FullPost extends Component {
         loadedPost: null
     }
 
-    componentDidUpdate () {
-        if ( this.props.id ) {
+    componentDidMount () {
+        console.log(this.props);
+        if ( this.props.match.params.id ) {
             // this condition makes sure we are adding data for ne post only
-            if ( !this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id) ) {                
-                axios.get( '/posts/' + this.props.id )
+            if ( !this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.match.params.id) ) {                
+                axios.get( '/posts/' + this.props.match.params.id )
                     .then( response => {
                         // If we dont do above if, then this resuts with infinate look due to setState Rerender that component.
                         // console.log(response);
