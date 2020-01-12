@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, Switch } from 'react-router-dom';
 
 import './Blog.css';
 import Posts from './Posts/Posts';
@@ -32,19 +32,22 @@ class Blog extends Component {
                         </ul>
                     </nav>
                 </header>
+
                 {/* localhost:3000/ display <Posts /> */}
                 {/* <Route path="/" exact render={() => <Posts />} /> 
                 use render propert to display short messages only*/}
                 <Route path="/" exact component={Posts} />
-                
-                {/* localhost:3000/ display <FullPost /> */}
-                <Route path="/new-post" component={NewPost} />
+                <Switch>
+                    {/* localhost:3000/ display <FullPost /> */}
+                    <Route path="/new-post" component={NewPost} />
 
-                {/* localhost:3000/ display <NewPost /> */}
-                <Route path="/full-post" component={FullPost} />
+                    {/* localhost:3000/ display <NewPost /> */}
+                    <Route path="/full-post" component={FullPost} />
 
-                {/* Dynamically render full post based on specific id */}
-                <Route path="/:id" exact component={FullPost} />
+                    {/* Dynamically render full post based on specific id */}
+                    {/* this is a flexable id route */}
+                    <Route path="/:id" exact component={FullPost} />
+                </Switch>                
             </div>
         );
     }
