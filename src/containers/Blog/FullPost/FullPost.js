@@ -19,7 +19,7 @@ class FullPost extends Component {
 
     loadData () {        
         if ( this.props.match.params.id ) {
-            // this condition makes sure we are adding data for ne post only
+            // this condition makes sure we are adding data for ne post only. Instead of +this.props... you can use !=
             if ( !this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== +this.props.match.params.id) ) {                
                 axios.get( '/posts/' + this.props.match.params.id )
                     .then( response => {
