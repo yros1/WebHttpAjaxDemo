@@ -10,9 +10,17 @@ class FullPost extends Component {
 
     componentDidMount () {
         console.log(this.props);
+        this.loadData();
+    }
+
+    componentDidUpdate () {
+        this.loadData();
+    }
+
+    loadData () {        
         if ( this.props.match.params.id ) {
             // this condition makes sure we are adding data for ne post only
-            if ( !this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.match.params.id) ) {                
+            if ( !this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== +this.props.match.params.id) ) {                
                 axios.get( '/posts/' + this.props.match.params.id )
                     .then( response => {
                         // If we dont do above if, then this resuts with infinate look due to setState Rerender that component.
@@ -24,7 +32,7 @@ class FullPost extends Component {
     }
 
     deletePostHandler = () => {
-          axios.delete('/posts/' + this.props.id)
+          axios.delete('/posts/' + this.match.params.id)
             .then(response => {
                 console.log(response);
             });
@@ -35,7 +43,7 @@ class FullPost extends Component {
 
         // if id null, we still waiting on deta coming back from service call request
         // therefore set post to 'Loading...!' string temporarly.
-        if (this.props.id) {
+        if (this.props.match.params.id) {
             post = <p style={{textAlign: 'center'}}>Loading...!</p>;
         }
 
