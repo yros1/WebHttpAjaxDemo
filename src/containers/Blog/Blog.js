@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
-import { Route, NavLink, Switch } from 'react-router-dom';
+import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 
 import './Blog.css';
 import Posts from './Posts/Posts';
@@ -42,6 +42,11 @@ class Blog extends Component {
                     {/* <Route path="/" exact render={() => <Posts />} /> 
                     use render propert to display short messages only*/}
                     <Route path="/posts" component={Posts} />
+                    {/* you can have multiple rouutes with different paths which render same content */}
+                    {/* <Route path="/" component={Posts} /> */}
+                    {/* this is an alternative for above solution */}
+                    <Redirect from="/" to="/posts" />
+                    
 
                     {/* localhost:3000/ display <NewPost /> */}
                     {/* <Route path="/full-post" component={FullPost} /> */}
