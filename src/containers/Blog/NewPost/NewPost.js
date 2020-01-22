@@ -25,7 +25,10 @@ class NewPost extends Component {
         axios.post('/posts', data)
             .then(response => {
                 console.log(response);
-                this.setState({submitted: true});
+                // this.setState({submitted: true});
+                // alternatives to conditionall redirecting pages
+                // this.props.history.push('/posts'); // navigate to posts page form stack of pages
+                this.props.history.replace('/posts'); // replace the newpost page to posts 
             });
     }
 
