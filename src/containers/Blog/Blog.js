@@ -48,8 +48,10 @@ class Blog extends Component {
                     {/* you can have multiple rouutes with different paths which render same content */}
                     {/* <Route path="/" component={Posts} /> */}
                     {/* this is an alternative for above solution */}
-                    <Redirect from="/" to="/posts" />
-                    
+                    {/* this catches any unknown request */}
+                    {/* <Redirect from="/" to="/posts" /> */}
+
+                    <Route render={() => <h1>Not found</h1>} />
 
                     {/* localhost:3000/ display <NewPost /> */}
                     {/* <Route path="/full-post" component={FullPost} /> */}
