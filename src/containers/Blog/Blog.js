@@ -9,6 +9,9 @@ import NewPost from './NewPost/NewPost';
 
 
 class Blog extends Component {
+    state = {
+        auth: false
+    }
     render () {
         return (
             <div className="Blog">
@@ -36,8 +39,8 @@ class Blog extends Component {
                 
                 <Switch>
                     {/* localhost:3000/ display <FullPost /> */}
-                    <Route path="/new-post" component={NewPost} />
-
+                    {this.state.auth ? <Route path="/new-post" component={NewPost} /> : null}                    
+ 
                     {/* localhost:3000/ display <Posts /> */}
                     {/* <Route path="/" exact render={() => <Posts />} /> 
                     use render propert to display short messages only*/}
